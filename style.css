@@ -201,3 +201,122 @@ nav {
     background: #38bdf8;
     color: black;
 }
+
+/* ================= ADVANCED CHATBOT ================= */
+
+.chat-toggle {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #38bdf8;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(56,189,248,0.5);
+    z-index: 2000;
+}
+
+.chat-container {
+    position: fixed;
+    bottom: 100px;
+    right: 25px;
+    width: 340px;
+    background: #1e293b;
+    border-radius: 15px;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    z-index: 2000;
+}
+
+.chat-container.active {
+    display: flex;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.chat-header {
+    background: #38bdf8;
+    color: black;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+.close-btn {
+    cursor: pointer;
+}
+
+.chat-messages {
+    padding: 15px;
+    height: 320px;
+    overflow-y: auto;
+}
+
+.bot-message {
+    background: rgba(56,189,248,0.2);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.user-message {
+    background: #38bdf8;
+    color: black;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    text-align: right;
+    font-size: 14px;
+}
+
+.chat-input {
+    display: flex;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    outline: none;
+    background: #0f172a;
+    color: white;
+}
+
+.chat-input button {
+    padding: 12px;
+    border: none;
+    background: #38bdf8;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.quick-buttons {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.quick-buttons button {
+    padding: 5px 10px;
+    border: none;
+    background: #38bdf8;
+    color: black;
+    border-radius: 15px;
+    font-size: 12px;
+    cursor: pointer;
+}
