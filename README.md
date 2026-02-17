@@ -6,8 +6,43 @@
     <title>Rushit Gohil | Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="icon.png">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
 </head>
+<!-- ================= ADVANCED CHATBOT ================= -->
+
+<div class="chat-toggle" onclick="toggleChat()">💬</div>
+
+<div class="chat-container" id="chatContainer">
+    <div class="chat-header">
+        <span>Rushit Assistant 🤖</span>
+        <span onclick="toggleChat()" class="close-btn">✖</span>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+        <div class="bot-message">
+            Hi 👋 I'm Rushit's assistant.  
+            Ask me about skills, education, contact, resume or location.
+        </div>
+
+        <div class="quick-buttons">
+            <button onclick="quickAsk('skills')">Skills</button>
+            <button onclick="quickAsk('education')">Education</button>
+            <button onclick="quickAsk('contact')">Contact</button>
+            <button onclick="quickAsk('resume')">Resume</button>
+        </div>
+    </div>
+
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Ask something..." onkeypress="handleKey(event)">
+        <button onclick="sendMessage()">➤</button>
+    </div>
+</div>
+
+<script src="chatbot.js"></script>
 
 <body>
 
@@ -30,7 +65,7 @@
 
 <!-- ================= HOME ================= -->
 
-<section id="home" class="section hero">
+<section id="home" class="section hero" data-aos="fade-up">
     <div class="container hero-container">
 
         <div class="hero-text">
@@ -58,7 +93,7 @@
 
 <!-- ================= ABOUT ================= -->
 
-<section id="about" class="section">
+<section id="about" class="section" data-aos="fade-right">
     <div class="container">
         <h2>About Me</h2>
 
@@ -85,7 +120,7 @@
 
 <!-- ================= EDUCATION ================= -->
 
-<section id="education" class="section">
+<section id="education" class="section" data-aos="fade-left">
     <div class="container">
         <h2>Education</h2>
 
@@ -102,7 +137,7 @@
 
 <!-- ================= SKILLS ================= -->
 
-<section id="skills" class="section">
+<section id="skills" class="section" data-aos="fade-up">
     <div class="container">
         <h2>Professional Skills</h2>
 
@@ -155,28 +190,38 @@
 
 <!-- ================= CONTACT ================= -->
 
-<section id="contact" class="section">
+<section id="contact" class="section" data-aos="fade-down">
     <div class="container">
         <h2>Contact Information</h2>
 
         <div class="grid">
             <div class="glass card">
                 <h3>Phone</h3>
-                <p>+91 97264 89466</p>
+                <p>
+                    <a href="tel:+919726489466" class="contact-link">
+                      📞 +91 97264 89466
+                    </a>
+                  </p>
+                  
             </div>
 
             <div class="glass card">
                 <h3>Email</h3>
-                <p>rushit28gohil@gmail.com</p>
+                <p>
+                    <a href="mailto:rushit28gohil@gmail.com" class="contact-link">
+                      ✉ rushit28gohil@gmail.com
+                    </a>
+                  </p>
+                  
             </div>
 
             <div class="glass card">
                 <h3>Location</h3>
-                <p>Navrangpura, Ahmedabad – 380009</p>
+                <p>📍Navrangpura, Ahmedabad – 380009</p>
             </div>
         </div>
 
-        <h2 style="margin-top:70px;">Languages</h2>
+        <h2 style="margin-top:70px;">Languages Known</h2>
 
         <div class="grid">
             <div class="glass card">English</div>
@@ -185,10 +230,28 @@
         </div>
     </div>
 </section>
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+    <p>© 2026 Rushit Gohil. All Rights Reserved.</p>
+  </footer>
+  
 
 </body>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+      duration: 1200,              // slower = smoother
+      easing: "cubic-bezier(.25,.8,.25,1)",  // premium easing
+      once: false,
+      mirror: true,
+      offset: 150,
+      anchorPlacement: "top-bottom"
+    });
+  </script>
+  
+  
 </html>
-
 
 
 
@@ -397,4 +460,147 @@ nav {
 .btn.outline:hover {
     background: #38bdf8;
     color: black;
+}
+
+/* ================= ADVANCED CHATBOT ================= */
+
+.chat-toggle {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #38bdf8;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(56,189,248,0.5);
+    z-index: 2000;
+}
+
+.chat-container {
+    position: fixed;
+    bottom: 100px;
+    right: 25px;
+    width: 340px;
+    background: #1e293b;
+    border-radius: 15px;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    z-index: 2000;
+}
+
+.chat-container.active {
+    display: flex;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.chat-header {
+    background: #38bdf8;
+    color: black;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+.close-btn {
+    cursor: pointer;
+}
+
+.chat-messages {
+    padding: 15px;
+    height: 320px;
+    overflow-y: auto;
+}
+
+.bot-message {
+    background: rgba(56,189,248,0.2);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.user-message {
+    background: #38bdf8;
+    color: black;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    text-align: right;
+    font-size: 14px;
+}
+
+.chat-input {
+    display: flex;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    outline: none;
+    background: #0f172a;
+    color: white;
+}
+
+.chat-input button {
+    padding: 12px;
+    border: none;
+    background: #38bdf8;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.quick-buttons {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.quick-buttons button {
+    padding: 5px 10px;
+    border: none;
+    background: #38bdf8;
+    color: black;
+    border-radius: 15px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* ================= CONTACT LINKS ================= */
+
+.contact-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+.contact-link:hover {
+    color: white;
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+    background: rgba(0,0,0,0.6);
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    font-size: 14px;
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
