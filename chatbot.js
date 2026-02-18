@@ -105,7 +105,7 @@ function botReply(text, sectionId = null, keyword = null) {
 
           // Optional resume thumbnail
           const img = document.createElement("img");
-          img.src = "resume-thumbnail.jpg"; // put your resume image here
+          img.src = "resume.jpg"; // put your resume image here
           img.alt = "Resume Preview";
           img.style.width = "100%";
           img.style.borderRadius = "10px";
@@ -140,3 +140,4 @@ function botReply(text, sectionId = null, keyword = null) {
       chat.scrollTop = chat.scrollHeight;
   }, 800);
 }
+
